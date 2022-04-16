@@ -1,21 +1,21 @@
-import { Col, Container, Row } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
-import { userAuthContextProvider } from "./context/UserAuthContext";
+import { UserAuthContextProvider } from "./context/UserAuthContext";
 
-function App() {
+const App = () => {
   return (
-    <Container>
+    <Container style={{ width: "400px" }}>
       <Row>
         <Col>
-          <userAuthContextProvider>
+          <UserAuthContextProvider>
             <Routes>
               <Route path="/" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
             </Routes>
-          </userAuthContextProvider>
+          </UserAuthContextProvider>
         </Col>
       </Row>
     </Container>
