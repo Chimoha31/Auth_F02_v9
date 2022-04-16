@@ -13,7 +13,7 @@ export function UserAuthContextProvider({children}) {
   }
   
   // Loginを作成(signInWithEmailAndPasswordを用いてLogin)
-  const Login = (email, password) => {
+  const logIn = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
   }
 
@@ -31,7 +31,7 @@ export function UserAuthContextProvider({children}) {
   }, []);
 
   return(
-    <userAuthContext.Provider value={{user, signUp, Login}}>
+    <userAuthContext.Provider value={{user, signUp, logIn}}>
       {children}
     </userAuthContext.Provider>
   )

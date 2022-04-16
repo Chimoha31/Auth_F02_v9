@@ -1,20 +1,22 @@
 import React, {useState} from 'react';
+import {Link, useNavigate} from 'react-router-dom';
 import { Alert, Form } from "react-bootstrap";
 import { Button } from "react-bootstrap";
-import {Link} from 'react-router-dom';
 import {useUserAuth} from '../context/UserAuthContext';
 
 const Signup = () => {
   const [email, setEmail] = useState("");
-  const [error, setError] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const { signUp } = useUserAuth();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     try {
       await signUp(email, password);
+      navigate("/");
     } catch (err) {
       setError(err.message);
     }
