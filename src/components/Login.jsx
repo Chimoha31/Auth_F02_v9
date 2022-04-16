@@ -2,6 +2,7 @@ import React from "react";
 import { Form } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import GoogleButton from "react-google-button";
+import {Link} from 'react-router-dom';
 
 const Login = () => {;
   return (
@@ -38,7 +39,7 @@ const Login = () => {;
         </div>
       </div>
       <div className="p-4 box mt-3 text-center">
-        Don't have an account? Sign up
+        Don't have an account? <Link to="/signup">Sign up</Link>
       </div>
     </>
   );
