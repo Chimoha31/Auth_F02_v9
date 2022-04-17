@@ -6,8 +6,7 @@ import { useUserAuth } from "../context/UserAuthContext";
 const Home = () => {
   const [error, setError] = useState();
   const navigate = useNavigate();
-  const { user } = useUserAuth();
-  const { logOut } = useUserAuth();
+  const { user, logOut } = useUserAuth();
 
   const handleClick = async () => {
     setError("");

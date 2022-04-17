@@ -1,27 +1,40 @@
-import React, {useState} from "react";
-import {Link, useNavigate} from 'react-router-dom';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Alert, Form } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import GoogleButton from "react-google-button";
-import {useUserAuth} from '../context/UserAuthContext';
+import { useUserAuth } from "../context/UserAuthContext";
 
 const Login = () => {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [error, setError] = useState("")
-  const {logIn} = useUserAuth();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const { logIn, googleSignIn } = useUserAuth();
   const navigate = useNavigate();
 
-  const handleSubmit = async(e) => {
+  // emailでlogin
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    try{
+    try {
       await logIn(email, password);
-      navigate("/home")
-    }catch(e) {
-      setError(e.message)
+      navigate("/home");
+    } catch (e) {
+      setError(e.message);
     }
-  }
+  };
+
+  // googleでlogin
+  const handleGoogleSignIn = async (e) => {
+    e.preventDefault();
+    try {
+      await googleSignIn();
+      navigate("/home");
+    } catch (e) {
+      setError(e.message);
+    }
+  };
+
   return (
     <>
       <div className="p-4 box">
@@ -55,6 +68,7 @@ const Login = () => {
           <GoogleButton
             className="g-btn"
             type="dark"
+            onClick={handleGoogleSignIn}
           />
         </div>
       </div>
