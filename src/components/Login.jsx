@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import {Link, Navigate, useNavigate} from 'react-router-dom';
-import { Form } from "react-bootstrap";
+import {Link, useNavigate} from 'react-router-dom';
+import { Alert, Form } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import GoogleButton from "react-google-button";
 import {useUserAuth} from '../context/UserAuthContext';
@@ -19,13 +19,14 @@ const Login = () => {
       await logIn(email, password);
       navigate("/home")
     }catch(e) {
-      setError(e.massage)
+      setError(e.message)
     }
   }
   return (
     <>
       <div className="p-4 box">
         <h2 className="mb-3">Firebase Auth Login</h2>
+        {error && <Alert variant="danger">{error}</Alert>}
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Control

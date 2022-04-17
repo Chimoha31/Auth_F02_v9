@@ -17,6 +17,11 @@ export function UserAuthContextProvider({children}) {
     return signInWithEmailAndPassword(auth, email, password);
   }
 
+  // Logout
+  const logOut = () => {
+    return signOut(auth);
+  }
+
   // どのspecific userがsignupしたか/loginしたかを把握するために、useEffect()の中でonAuthStateChangedとuseState()を用いて把握させる。
   // unmountしたら、もうこのfunctionを読み込ませたくない(listenさせたくない)。なので、return unsubscribe()でclean upする
   useEffect(() => {
@@ -31,7 +36,7 @@ export function UserAuthContextProvider({children}) {
   }, []);
 
   return(
-    <userAuthContext.Provider value={{user, signUp, logIn}}>
+    <userAuthContext.Provider value={{user, signUp, logIn, logOut}}>
       {children}
     </userAuthContext.Provider>
   )
